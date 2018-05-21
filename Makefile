@@ -6,7 +6,7 @@
 #    By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/08 14:53:08 by jhamon            #+#    #+#              #
-#    Updated: 2018/05/20 09:16:31 by jhamon           ###   ########.fr        #
+#    Updated: 2018/05/21 16:37:16 by jhamon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,7 @@ define BULSHIT
 endef
 
 all : $(NAME)
+	@make -C libft
 	@:
 
 $(NAME) : $(OBJ)

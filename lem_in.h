@@ -6,7 +6,7 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:20:32 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/21 14:14:20 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/21 16:53:22 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,16 @@ typedef struct	s_salle
 
 typedef struct	s_lem
 {
-	int frmi; //nbr de fourmis
-	int start; //pour signaler que la prochaine salle est la start
-	int end; //pour signaler que la prochaine salle est la end
-	int m_lien; // nb de lien pour un chemin
+	int frmi; // nbr de fourmis
+	int start; // pour signaler que la prochaine salle est la start
+	int end; // pour signaler que la prochaine salle est la end
+	int n_lien; // nb de lien pour un chemin
 	int n_chmn; // nb de chemin
+	int n_lien_2; // pour compare
 	t_salle *sal;
 }				t_lem;
 
 int ft_h_tag(char *line, t_lem *p);
-void ft_go_in(t_lem *p);
+int ft_go_in(t_salle *p, t_lem *l);
 
 #endif
