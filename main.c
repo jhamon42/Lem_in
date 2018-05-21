@@ -6,7 +6,7 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:19:57 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/20 08:20:40 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/21 10:40:04 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main(void)
 				**on recup d'abort les salles {nom coord_x coord_y},
 				**puis pour les liens. {nom1-nom2}
 				*/
-				if (!line)
+				if (!line && last_check(p)) // il faut verif que l'on a bien tous
 					break; //normalment si il n'y a pas de line c'est fini
 			}
 			if (++i == 1 /*on recup le nombre de fourmis*/)

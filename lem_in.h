@@ -6,7 +6,7 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:20:32 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/20 09:11:08 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/21 14:14:20 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ typedef struct	s_lem
 	int start; //pour signaler que la prochaine salle est la start
 	int end; //pour signaler que la prochaine salle est la end
 	int m_lien; // nb de lien pour un chemin
-	t_salle *salle;
+	int n_chmn; // nb de chemin
+	t_salle *sal;
 }				t_lem;
 
 int ft_h_tag(char *line, t_lem *p);

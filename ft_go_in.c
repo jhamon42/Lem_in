@@ -6,7 +6,7 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 08:01:37 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/20 08:33:40 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/21 11:01:20 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,8 @@ void ft_go_in(t_lem *p)
 {
 	if (p)
 		;
+	if (p->sal->n_lien == 1 && !p->sal->atrib)
+		return (0);
+	if (p->sal-> && p->sal->atrib)
+		return (0);
 }
