@@ -6,7 +6,7 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:19:57 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/21 16:39:29 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/23 15:25:56 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,46 @@ int last_check(t_lem *p)
 	return (0);
 }
 
+
+void    ft_error(char *str)
+{
+        ft_putstr_fd(str, 2);
+        exit(EXIT_FAILURE);
+}
+
+
 int main(void)
 {
 	t_lem stct;
 	t_lem *p;
+	t_link *t;
 	char *line;
 	int i;
 
 	p = &stct;
-	ft_bzero(p, 2);
+	ft_bzero(p, sizeof(t_lem));
 	i = 0;
+	p->check = 0;
 	while (get_next_line(0, &line))
 	{
-		if (ft_h_tag(line, p)) // pour verif les comm et les cmd
+		if (p->check == 1 || p->check == 2)
 		{
-			if (i != 0)
-			{
-				//on recup d'abort les salles {nom coord_x coord_y},
-				//puis pour les liens. {nom1-nom2}
-				if (!line && last_check(p)) // il faut verif que l'on a bien tous
-					break; //normalment si il n'y a pas de line c'est fini
-			}
-			if (++i == 1) //on recup le nombre de fourmis
-				p->frmi = ft_atoi(line);
-			else
-				exit(1); //normalment on peux exit aven quand on trouve l'erreur, mais c'est pour la comprention
+			if (ft_get_data(line, p) == -1)
+				break ;
 		}
+		else if (ft_h_tag(line, p) == -1)
+			break ;
 		ft_memdel((void *)&line);
 	}
-	ft_go_in(p->sal, p);
+	ft_fill_struct(p);
+	t = p->sal->lien->first;
+	if (ft_go_in(p->sal, p)) // p->sal pointe sur end
+	{
+		//printf("ok\n");
+		p->sal->lien = t;
+		ft_plc_frmi(p->sal, p);
+	}
+	else
+		ft_printf("pas de soluce\n");
 	return (0);
 }

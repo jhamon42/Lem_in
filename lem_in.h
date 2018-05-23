@@ -6,7 +6,7 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:20:32 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/21 16:53:22 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/23 15:18:44 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,47 @@
 
 # include "libft/libft.h"
 
+#define CH printf("lol\n");
+typedef struct	s_link
+{
+	struct s_salle	*link;
+	struct s_link	*next;
+	struct s_link	*first;
+}				t_link;
+
 typedef struct	s_salle
 {
 	char *name;
-	int statu; // -1 fade, 0 : normal, 1 : ok chemin1 2 : ok chemin2, ...
+	int statu; // -1 fade, 0 : normal
 	int n_lien; // nombre de liens
 	int atrib; // 1 : start, 2 : end, 0 : salle
-	struct s_salle **lien; // tableau d'adresse des liens
+	int frmi; // 1 ou plus : nom de la frmi 0: pas frmi
+	struct s_link *lien; // tableau d'adresse des liens
 	struct s_salle *next;
-	struct s_salle *betw;
+	struct s_salle *prev;
+	struct s_salle *first;
 }				t_salle;
 
 typedef struct	s_lem
 {
 	int frmi; // nbr de fourmis
+	int frmi_arv; // nbr de fourmis arriver
 	int start; // pour signaler que la prochaine salle est la start
 	int end; // pour signaler que la prochaine salle est la end
-	int n_lien; // nb de lien pour un chemin
+	int ct_lien; // nb de lien pour un chemin
 	int n_chmn; // nb de chemin
-	int n_lien_2; // pour compare
+	int n_lien_max; // pour co
+	int n_salle;
+	int ok;
+	int	check;
 	t_salle *sal;
 }				t_lem;
 
-int ft_h_tag(char *line, t_lem *p);
-int ft_go_in(t_salle *p, t_lem *l);
+int 	ft_h_tag(char *line, t_lem *p);
+int 	ft_go_in(t_salle *p, t_lem *l);
+int		ft_get_data(char *str, t_lem *p);
+void	ft_fill_struct(t_lem *p);
+void	ft_error(char *str);
+void	ft_plc_frmi(t_salle *p, t_lem *l);
 
 #endif

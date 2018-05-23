@@ -6,35 +6,28 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 08:01:37 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/21 17:12:12 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/23 15:25:58 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int ft_go_in(t_salle *p, t_lem *l)
+int		ft_go_in(t_salle *p, t_lem *l)
 {
-	int n;
-
-	n = -1;
-	if (p->n_lien == 1 && !p->atrib)
+	if (p->atrib == 1)
+		return (l->ok = 1);
+	if (p->statu == -1 || !p->lien)
 		return (0);
-	if (p->atrib == 2)
-		return (1);
-	while (++n < p->n_lien)
+	while (p->lien)
 	{
-		if (!p->lien[n]->statu)
-		{
-			l->n_lien++;
-			if (ft_go_in(p->lien[n], l))
-			{
-				if (l->n_lien_2 <= l->n_lien)
-					l->n_lien_2 = l->n_lien;
-				p->statu = l->n_chmn++;
-				return (0);
-			}
-			l->n_lien--;
-		}
+		if (p->n_lien > l->ct_lien)
+			p->n_lien = l->ct_lien++;
+		p->statu = -1;
+		ft_go_in(p->lien->link, l);
+		p->statu = 0;
+		p->lien = p->lien->next;
 	}
+	if (l->ok)
+		return (1);
 	return (0);
 }
