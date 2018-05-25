@@ -6,7 +6,7 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:20:32 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/23 15:18:44 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/25 15:34:09 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 
 # include "libft/libft.h"
 
-#define CH printf("lol\n");
+#define CH(X) ft_printf("CHECK %d\n", X);
+#define PTR(X) ft_printf("%p\n", X);
+#define NAME(X) ft_printf("salle : %s\n", X);
+#define NB(X) ft_printf("%d\n", X);
+#define N ft_printf("\n");
+
 typedef struct	s_link
 {
 	struct s_salle	*link;
@@ -34,6 +39,7 @@ typedef struct	s_salle
 	struct s_salle *next;
 	struct s_salle *prev;
 	struct s_salle *first;
+	struct s_salle *end;
 }				t_salle;
 
 typedef struct	s_lem
@@ -52,7 +58,7 @@ typedef struct	s_lem
 }				t_lem;
 
 int 	ft_h_tag(char *line, t_lem *p);
-int 	ft_go_in(t_salle *p, t_lem *l);
+int 	ft_go_in(t_salle *s, t_lem *p);
 int		ft_get_data(char *str, t_lem *p);
 void	ft_fill_struct(t_lem *p);
 void	ft_error(char *str);

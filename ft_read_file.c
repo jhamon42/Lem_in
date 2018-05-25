@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_read_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: piliegeo <piliegeo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 14:51:12 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/05/22 19:31:15 by                  ###   ########.fr       */
+/*   Updated: 2018/05/25 15:39:25 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static void			ft_creat_room(char *str, t_lem *p)
 	else
 	{
 		new->next = p->sal;
+		new->first = p->sal->first;
 		p->sal->prev = new;
 		p->sal = new;
 	}
@@ -121,10 +122,22 @@ int			ft_get_data(char *str, t_lem *p)
 
 static void			ft_check_cmd(char *str, t_lem *p)
 {
+	static int check[2];
+
 	if (ft_strcmp(str, "##start") == 0)
+	{
+		check[0]++;
+		if (check[0] == 2)
+			ft_error("Plusieurs salles avec ##start\n");
 		p->check = 1;
+	}
 	else if (ft_strcmp(str, "##end") == 0)
+	{
+		check[1]++;
+		if (check[1] == 2)
+			ft_error("plusieurs salles avec ##end\n");
 		p->check = 2;
+	}
 }
 
 static void			ft_creat_link(t_salle *s1, t_salle *s2)
@@ -202,7 +215,15 @@ int					ft_h_tag(char *str, t_lem *p)
 		if (frmi == 0)
 			ft_error("cmd avant le nbr de fourmis... really?\n");
 		else
-			ft_check_cmd(str, p);
+		{
+			if (p->check == 3)
+			{
+				printf("Encule, tu tu tentes de mettre une commande apres avoir mis des liens\n");
+				return (-1);
+			}
+			else
+				ft_check_cmd(str, p);
+		}
 	}
 	else if (str[0] && str[0] == '#')
 		return (0);

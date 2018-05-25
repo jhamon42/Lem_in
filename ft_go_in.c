@@ -6,28 +6,37 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 08:01:37 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/23 15:25:58 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/25 15:56:54 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		ft_go_in(t_salle *p, t_lem *l)
+int		ft_go_in(t_salle *s, t_lem *p)
 {
-	if (p->atrib == 1)
-		return (l->ok = 1);
-	if (p->statu == -1 || !p->lien)
-		return (0);
-	while (p->lien)
+	t_link *l;
+
+	CH(p->ct_lien)
+	l = s->lien;
+	if (s->atrib == 1)
 	{
-		if (p->n_lien > l->ct_lien)
-			p->n_lien = l->ct_lien++;
-		p->statu = -1;
-		ft_go_in(p->lien->link, l);
-		p->statu = 0;
-		p->lien = p->lien->next;
+		s = s->end;
+		p->ok = 1;
 	}
-	if (l->ok)
+	if (s->statu == -1)
+		return (0);
+	p->ct_lien++;
+	while (s->lien)
+	{
+		if (s->n_lien >= p->ct_lien)
+			s->n_lien = p->ct_lien;
+		s->statu = -1;
+		ft_go_in(s->lien->link, p);
+		s->lien = s->lien->next;
+	}
+	p->ct_lien--;
+	s->lien = l;
+	if (p->ok && s->atrib == 2)
 		return (1);
 	return (0);
 }

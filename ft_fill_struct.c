@@ -6,50 +6,47 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/22 15:58:33 by piliegeo          #+#    #+#             */
-/*   Updated: 2018/05/23 15:46:43 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/25 14:46:38 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void		ft_first_link(t_salle *s)
+void		ft_init_nlien(t_lem *p)
 {
-	t_link	*l;
+	t_salle		*s;
 
+	s = p->sal;
 	while (s)
 	{
-		l = s->lien;
-		if (l)
-			l->first = l;
+		s->n_lien = p->n_salle;
 		s = s->next;
 	}
 }
 
-
 void		ft_fill_struct(t_lem *p)
 {
-	t_link		*t;
+	t_link		*l;
 	t_salle		*s;
 	int			count[2];
 
 	count[1] = 0;
 	s = p->sal;
-	while (s)
+	while (s && count[1]++ > -1)
 	{
-		count[1]++;
+		s->first = p->sal;
 		count[0] = 0;
-		t = s->lien;
-		while (t)
+		l = s->lien;
+		while (l && count[0]++ > -1)
 		{
-			count[0]++;
-			t = t->next;
+			l->first = s->lien;
+			l = l->next;
 		}
 		s->n_lien = count[0];
-		printf("*****************il y a |%d| liens dans la salle |%s|***\n", s->n_lien, s->name);
 		s = s->next;
 	}
 	p->n_salle = count[1];
+	ft_init_nlien(p);
 	if (p->n_salle < 1)
 		ft_error("y'a pas de salle lol\n");
-	ft_first_link(p->sal);
 }
