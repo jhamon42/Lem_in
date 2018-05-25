@@ -6,7 +6,7 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:19:57 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/25 15:39:55 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/25 18:12:33 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void 	ft_reset_lien(t_lem *p)
 			s = s->next;
 		}
 	}
+	p->sal = p->sal->end;
 }
 
 void	ft_check_params(t_lem *p)
