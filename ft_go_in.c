@@ -6,7 +6,7 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 08:01:37 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/25 15:56:54 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/26 07:49:22 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		ft_go_in(t_salle *s, t_lem *p)
 {
 	t_link *l;
 
-	CH(p->ct_lien)
 	l = s->lien;
 	if (s->atrib == 1)
 	{

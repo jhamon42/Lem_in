@@ -6,7 +6,7 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:20:32 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/25 16:26:54 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/26 08:01:17 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ int 	ft_go_in(t_salle *s, t_lem *p);
 int		ft_get_data(char *str, t_lem *p);
 void	ft_fill_struct(t_lem *p);
 void	ft_error(char *str);
-void	ft_plc_frmi(t_salle *p, t_lem *l);
+void	ft_plc_frmi(t_lem *l);
 
 #endif

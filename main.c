@@ -6,7 +6,7 @@
 /*   By: jhamon <jhamon@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 06:19:57 by jhamon            #+#    #+#             */
-/*   Updated: 2018/05/25 18:12:33 by jhamon           ###   ########.fr       */
+/*   Updated: 2018/05/26 08:01:00 by jhamon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,17 +136,15 @@ int main(void)
 			break ;
 		ft_memdel((void *)&line);
 	}
-	CH(9)
 	ft_fill_struct(p);
 //	N
 //	ft_check_params(p);
 	ft_this_is_the_end(p);
-	CH(0)
 	if (ft_go_in(p->sal, p))
 	{
 		ft_reset_lien(p);
-		ft_check_params(p);
-		ft_plc_frmi(p->sal, p);
+	//	ft_check_params(p);
+		ft_plc_frmi(p);
 	}
 	else
 		ft_printf("pas de soluce\n");
